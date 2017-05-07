@@ -2,9 +2,9 @@
   "name": "monad-navgiation",
   "version": "1.0.0",
   "description": "Navigation component for Monad CMS",
-  "main": "es5/index.js",
+  "main": "lib/index.js",
   "files": [
-    "es5/**"
+    "lib/**"
   ],
   "directories": {
     "doc": "docs",
@@ -42,7 +42,7 @@
   },
   "scripts": {
     "test": "karma start",
-    "build": "babel src --out-dir es5"
+    "build": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
