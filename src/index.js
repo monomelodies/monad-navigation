@@ -10,12 +10,13 @@ export default angular.module('monad.navigation', ['monad.cms', 'monad.navigatio
     .service('moNavigation', Service)
     .component('monadNavigation', {
         templateUrl: 'Monad/Navigation/template.html',
-        controller: ['monadNavigationService', function (Service) {
+        controller: ['monadNavigationService', 'monadLocation', function (Service, monadLocation) {
             this.$onInit = () => {
-                this.menu = this.menu || 'main';
-                this.options = Service.getPath(this.menu);
+                this.path = this.path || 'main';
+                this.options = Service.getPath(this.path);
             };
             this.select = item => Service.select(item);
+            this.url = url => monadLocation.make(url);
         }],
         bindings: {path: '@'}
     })
