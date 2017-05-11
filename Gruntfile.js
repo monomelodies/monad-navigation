@@ -23,7 +23,7 @@ module.exports = function (grunt) {
             },
             cwd: 'src',
             src: ['**/*.html', '!index.html'],
-            dest: 'lib/templates.js'
+            dest: 'lib/template.js'
         }
     });
 
