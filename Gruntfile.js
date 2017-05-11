@@ -43,17 +43,9 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.config('watch', {
-        gettext_extract: {
-            files: ['src/**/*.{js,html}', 'index.html'],
-            tasks: ['nggettext_extract']
-        },
-        gettext_compile: {
-            files: ['Locale/*.po'],
-            tasks: ['nggettext_compile']
-        },
-        spritesheet: {
-            files: ['assets/i18n/**/*.png'],
-            tasks: ['spritesheet']
+        lib: {
+            files: ['src/**/*.js'],
+            tasks: ['shell:lib']
         },
         sass: {
             files: ['src/_sass/**/*.scss'],
@@ -62,10 +54,6 @@ module.exports = function (grunt) {
         templates: {
             files: ['src/**/*.html'],
             tasks: ['ngtemplates']
-        },
-        includereplace: {
-            files: ['src/index.html'],
-            tasks: ['includereplace']
         }
     });
 
@@ -73,7 +61,7 @@ module.exports = function (grunt) {
     grunt.config('browserify', {
         monad: {
             src: 'src/index.js',
-            dest: 'dist/monad.js',
+            dest: 'dist/monad-navigation.js',
             options: {
                 transform: ['babelify'],
                 standalone: 'monad',
@@ -82,9 +70,23 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.config('uglify', {
+        js: {
+            src: 'dist/monad-navigation.js',
+            dest: 'dist/monad-navigation.min.js'
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.config('shell', {
+        lib: { command: 'npm run build' },
+        clean: { command: 'rm -rf dist/* && rm -rf lib/*' }
+    });
+
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['ngtemplates', /*'sass',*/ /*,*/ 'browserify']);
+    grunt.registerTask('build', ['ngtemplates', 'shell:lib', /*'sass',*/ /*,*/ 'browserify']);
     grunt.registerTask('dev', ['build', 'watch']);
-    grunt.registerTask('prod', ['build', 'uglify']);
+    grunt.registerTask('prod', ['shell:clean', 'build', 'uglify']);
 };
 
