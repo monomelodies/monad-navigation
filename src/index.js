@@ -2,7 +2,7 @@
 "use strict";
 
 import Service from './Service';
-import './template';
+import '../lib/template';
 
 export default angular.module('monad.navigation', ['monad.cms', 'monad.navigation.templates'])
     .service('monadNavigationService', Service)
