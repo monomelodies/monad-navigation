@@ -4,20 +4,6 @@ module.exports = function (grunt) {
     var pkg = grunt.file.readJSON('package.json');
     grunt.initConfig({pkg: pkg});
 
-    grunt.loadNpmTasks('grunt-angular-gettext');
-    grunt.config('nggettext_extract', {
-        pot: {
-            files: {
-                'Locale/template.pot': ['src/**/*.{js,html}', 'index.html']
-            }
-        },
-    });
-    grunt.config('nggettext_compile', {
-        all: {
-            files: {'i18n.js': ['Locale/*.po']}
-        }
-    });
-
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.config('ngtemplates', {
         'monad.navigation.templates': {
@@ -37,7 +23,7 @@ module.exports = function (grunt) {
             },
             cwd: 'src',
             src: ['**/*.html', '!index.html'],
-            dest: 'es5/template.js'
+            dest: 'lib/template.js'
         }
     });
 
@@ -83,7 +69,6 @@ module.exports = function (grunt) {
         }
     });
 
-    /*
     grunt.loadNpmTasks('grunt-browserify');
     grunt.config('browserify', {
         monad: {
@@ -96,11 +81,10 @@ module.exports = function (grunt) {
             }
         }
     });
-    */
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['ngtemplates', 'gettext', /*'sass',*/ 'includereplace', 'copy'/*, 'browserify'*/]);
-    grunt.registerTask('gettext', ['nggettext_extract', 'nggettext_compile']);
+    grunt.registerTask('build', ['ngtemplates', /*'sass',*/ /*,*/ 'browserify']);
     grunt.registerTask('dev', ['build', 'watch']);
+    grunt.registerTask('prod', ['build', 'uglify']);
 };
 
