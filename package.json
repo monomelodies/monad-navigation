@@ -4,7 +4,7 @@
   "description": "Navigation component for Monad CMS",
   "main": "lib/index.js",
   "files": [
-    "es5/**"
+    "lib/**"
   ],
   "directories": {
     "doc": "docs",

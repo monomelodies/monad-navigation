@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
 
     var pkg = grunt.file.readJSON('package.json');
-    grunt.initConfig({pkg: pkg});
+    grunt.initConfig({pkg});
 
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.config('ngtemplates', {
@@ -27,7 +27,6 @@ module.exports = function (grunt) {
         }
     });
 
-    /*
     grunt.loadNpmTasks('grunt-sass');
     grunt.config('sass', {
         monad: {
@@ -36,10 +35,9 @@ module.exports = function (grunt) {
                 compass: true,
                 sourcemap: 'none'
             },
-            files: {'dist/admin.css': 'src/_sass/default.scss'}
+            files: {'dist/monad-navigation.css': 'src/style.scss'}
         }
     });
-    */
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.config('watch', {
@@ -70,6 +68,12 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.config('shell', {
+        lib: { command: 'npm run build' },
+        clean: { command: 'rm -rf dist/* && rm -rf lib/*' }
+    });
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.config('uglify', {
         js: {
@@ -78,14 +82,24 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-shell');
-    grunt.config('shell', {
-        lib: { command: 'npm run build' },
-        clean: { command: 'rm -rf dist/* && rm -rf lib/*' }
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.config('watch', {
+        lib: {
+            files: ['src/**/*.js'],
+            tasks: ['shell:lib']
+        },
+        sass: {
+            files: ['src/style.scss'],
+            tasks: ['sass']
+        },
+        templates: {
+            files: ['src/**/*.html'],
+            tasks: ['ngtemplates']
+        }
     });
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['ngtemplates', 'shell:lib', /*'sass',*/ /*,*/ 'browserify']);
+    grunt.registerTask('build', ['sass', 'ngtemplates', 'shell:lib', 'browserify']);
     grunt.registerTask('dev', ['build', 'watch']);
     grunt.registerTask('prod', ['shell:clean', 'build', 'uglify']);
 };

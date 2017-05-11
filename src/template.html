@@ -12,8 +12,8 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand"
-                ng-if="$ctrl.menu == 'main'"
-                ng-href="#/{{ $ctrl.language }}/"
+                ng-if="$ctrl.path == 'main'"
+                ng-href="{{ $ctrl.url('/') }}"
                 ng-click="Navigation.select('main')"
                 ng-class="{active: isHome}">
                 <img src="logo.png" width="20" height="20" alt="Monad">
@@ -21,7 +21,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-class="{'in': $ctrl.navExp}">
             <ul class="nav navbar-nav">
-                <li ng-if="$ctrl.menu == 'main'"><a href="/" target="_blank" translate>Site</a></li>
+                <li ng-if="$ctrl.path == 'main'"><a href="/" target="_blank" translate>Site</a></li>
                 <li ng-repeat="item in $ctrl.options"
                     ng-if="item.authentication.check"
                     ng-class="{active: item.selected, dropdown: item.items}"
@@ -31,13 +31,13 @@
                     </a>
                     <ul class="dropdown-menu" ng-if="item.items">
                         <li ng-repeat="item in item.items" ng-if="item.authentication.check">
-                            <a ng-href="#/{{ $ctrl.language }}{{ item.url }}" ng-click="$ctrl.select(item)" mo-menu-label item="item">
+                            <a ng-href="{{ $ctrl.url(item.url) }}" ng-click="$ctrl.select(item)" mo-menu-label item="item">
                                 <small ng-if="item.notify()">{{ item.notify() }}</small>
                                 {{ item.title | translate }}
                             </a>
                         </li>
                     </ul>
-                    <a ng-if="!item.items" ng-href="#/{{ $ctrl.language }}{{ item.url }}" ng-click="$ctrl.select(item)">
+                    <a ng-if="!item.items" ng-href="{{ $ctrl.url(item.url) }}" ng-click="$ctrl.select(item)">
                         <small ng-if="item.notify()">{{ item.notify() }}</small>
                         {{ item.title | translate }}
                     </a>
