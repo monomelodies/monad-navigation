@@ -27,15 +27,31 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.config('sass', {
         monad: {
             options: {
-                outputStyle: 'compressed',
+                style: 'compressed',
                 compass: true,
                 sourcemap: 'none'
             },
             files: {'dist/monad-navigation.css': 'src/style.scss'}
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.config('watch', {
+        lib: {
+            files: ['src/**/*.js'],
+            tasks: ['shell:lib']
+        },
+        sass: {
+            files: ['src/_sass/**/*.scss'],
+            tasks: ['sass']
+        },
+        templates: {
+            files: ['src/**/*.html'],
+            tasks: ['ngtemplates']
         }
     });
 
@@ -83,7 +99,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['sass', 'shell:lib', 'ngtemplates', 'browserify']);
+    grunt.registerTask('build', ['sass', 'ngtemplates', 'shell:lib', 'browserify']);
     grunt.registerTask('dev', ['build', 'watch']);
     grunt.registerTask('prod', ['shell:clean', 'build', 'uglify']);
 };
