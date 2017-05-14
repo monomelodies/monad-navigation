@@ -12,8 +12,8 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand"
-                ng-if="$ctrl.path == 'main'"
-                ng-href="{{ $ctrl.url('/') }}"
+                ng-if="$ctrl.main"
+                ng-href="{{ $ctrl.url('') }}"
                 ng-click="Navigation.select('main')"
                 ng-class="{active: isHome}">
                 <img src="logo.png" width="20" height="20" alt="Monad">
@@ -21,8 +21,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-class="{'in': $ctrl.navExp}">
             <ul class="nav navbar-nav">
-                <li ng-if="$ctrl.path == 'main'"><a href="/" target="_blank" translate>Site</a></li>
-                <li ng-repeat="item in $ctrl.options"
+                <li ng-if="$ctrl.main"><a href="/" target="_blank" translate>Site</a></li>
+                <li ng-repeat="item in $ctrl.menu.options"
                     ng-if="item.authentication.check"
                     ng-class="{active: item.selected, dropdown: item.items}"
                     uib-dropdown>
