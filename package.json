@@ -1,5 +1,5 @@
 {
-  "name": "monad-navgiation",
+  "name": "monad-navigation",
   "version": "1.0.0",
   "description": "Navigation component for Monad CMS",
   "main": "lib/index.js",
