@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.config('sass', {
         monad: {
             options: {
@@ -35,7 +35,24 @@ module.exports = function (grunt) {
                 compass: true,
                 sourcemap: 'none'
             },
-            files: {'dist/monad-navigation.css': 'src/style.scss'}
+            files: {'tmp/monad-navigation.css': 'src/style.scss'}
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-postcss');
+    grunt.config('postcss', {
+        monad: {
+            options: {
+                processors: [
+                    require('autoprefixer')(),
+                    require('postcss-preset-env')(),
+                    require('precss')(),
+                    require('cssnano')()
+                ]
+            },
+            files: {
+                'dist/monad-navigation.css': 'tmp/monad-navigation.css'
+            }
         }
     });
 
