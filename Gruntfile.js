@@ -116,7 +116,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['build']);
-    grunt.registerTask('build', ['sass', 'ngtemplates', 'shell:lib', 'browserify']);
+    grunt.registerTask('build', ['sass', 'postcss', 'ngtemplates', 'shell:lib', 'browserify']);
     grunt.registerTask('dev', ['build', 'watch']);
     grunt.registerTask('prod', ['shell:clean', 'build', 'uglify']);
 };
