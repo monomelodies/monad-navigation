@@ -1,6 +1,4 @@
 
-@import 'compass';
-
 $white: #fff !default;
 $dark: #333 !default;
 $nav_dark: #666 !default;
@@ -16,7 +14,7 @@ $nav_bg: $nav_dark !default;
     }
 #navbar {
     small {
-        @include border-radius(50%);
+        border-radius: 50%;
         float: right;
         font-size: 80%;
         background: $white;
