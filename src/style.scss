@@ -7,11 +7,11 @@ $nav_bg: $nav_dark !default;
 
 .navbar-brand.active {
     background: #080808;
-    }
+}
 .navbar {
     background: $nav_bg;
     border-bottom: 2px solid $nav_border;
-    }
+}
 #navbar {
     small {
         border-radius: 50%;
@@ -26,10 +26,10 @@ $nav_bg: $nav_dark !default;
         font-weight: bold;
         text-shadow: 0!important;
         text-align: center;
-        }
+    }
     a:hover small, .active small {
         color: $dark;
         text-shadow: 0!important;
-        }
     }
+}
 
