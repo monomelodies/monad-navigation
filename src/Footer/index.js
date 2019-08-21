@@ -1,19 +1,18 @@
 
 "use strict";
 
-let $uibModal = undefined;
+const wm = new WeakMap();
 
 class controller {
 
-    constructor(_Authentication_, _$uibModal_, MONAD_VERSION, MONAD_COPYRIGHT) {
-        Authentication = _Authentication_;
-        $uibModal = _$uibModal_;
+    constructor(Authentication, $uibModal, MONAD_VERSION, MONAD_COPYRIGHT) {
+        wm.set(this, {Authentication, $uibModal});
         this.version = MONAD_VERSION;
         this.copyright = MONAD_COPYRIGHT;
     }
     
     license() {
-        $uibModal.open({
+        wm.get(this).$uibModal.open({
             templateUrl: 'Monad/templates/license.html',
             controller: ['$uibModalInstance', '$scope', function ($uibModalInstance, $scope) {
                 $scope.ok = () => $uibModalInstance.dismiss();
@@ -22,11 +21,11 @@ class controller {
     }
     
     get authenticated() {
-        return Authentication.check;
+        return wm.get(this).Authentication.check;
     }
     
     revoke() {
-        return Authentication.revoke();
+        return wm.get(this).Authentication.revoke();
     }
     
 };
