@@ -1,28 +1,27 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar fixed-top navbar-expand-lg navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <button class="navbar-toggle collapsed"
-                aria-controls="navbar"
-                aria-expanded="false"
-                data-target="#navbar"
-                data-toggle="collapse"
-                ng-click="$ctrl.navExp = !$ctrl.navExp"
-                type="button">
-                <span class="sr-only" translate>Toggle navigation</span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand"
-                ng-if="$ctrl.main"
-                ng-href="{{ $ctrl.url('') }}"
-                ng-click="Navigation.select('main')"
-                ng-class="{active: isHome}">
-                <img src="logo.png" width="20" height="20" alt="Monad">
-            </a>
-        </div>
+        <a class="navbar-brand"
+            ng-if="$ctrl.main"
+            ng-href="{{ $ctrl.url('') }}"
+            ng-click="Navigation.select('main')"
+            ng-class="{active: isHome}">
+            <img src="logo.png" width="20" height="20" alt="Monad">
+        </a>
+        <button class="navbar-toggler"
+            data-toggle="collapsed"
+            data-target="#navbar"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            ng-click="$ctrl.navExp = !$ctrl.navExp"
+            type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div id="navbar" class="navbar-collapse collapse" ng-class="{'in': $ctrl.navExp}">
-            <ul class="nav navbar-nav">
-                <li ng-if="$ctrl.main"><a href="/" target="_blank" translate>Site</a></li>
+            <ul class="navbar-nav mr-auto">
+                <li ng-if="$ctrl.main" class="nav-item"><a class="nav-link" href="/" target="_blank" translate>Site</a></li>
                 <li ng-repeat="item in $ctrl.menu.options"
+                    class="nav-item"
                     ng-if="item.authentication.check"
                     ng-class="{active: item.selected, dropdown: item.items}"
                     uib-dropdown>
@@ -31,13 +30,13 @@
                     </a>
                     <ul class="dropdown-menu" ng-if="item.items">
                         <li ng-repeat="item in item.items" ng-if="item.authentication.check">
-                            <a ng-href="{{ $ctrl.url(item.url) }}" ng-click="$ctrl.select(item)" mo-menu-label item="item">
+                            <a ng-href="{{ $ctrl.url(item.url) }}" ng-click="$ctrl.select(item)" mo-menu-label item="item" class="nav-link">
                                 <small ng-if="item.notify()">{{ item.notify() }}</small>
                                 {{ item.title | translate }}
                             </a>
                         </li>
                     </ul>
-                    <a ng-if="!item.items" ng-href="{{ $ctrl.url(item.url) }}" ng-click="$ctrl.select(item)">
+                    <a ng-if="!item.items" ng-href="{{ $ctrl.url(item.url) }}" ng-click="$ctrl.select(item)" class="nav-link">
                         <small ng-if="item.notify()">{{ item.notify() }}</small>
                         {{ item.title | translate }}
                     </a>
