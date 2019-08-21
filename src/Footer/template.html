@@ -2,18 +2,19 @@
     <nav class="navbar fixed-bottom navbar-expand-lg">
         <div class="container-fluid">
             <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li id="copyright" class="float-right"><p class="navbar-text">
+                <ul class="navbar-nav mr-auto nav-fill w-100">
+                    <li id="menu-logout" ng-if="$ctrl.authenticated" class="nav-item">
+                        <a title="{{'Logout' | translate}}" ng-click="$ctrl.revoke()" href class="nav-link">
+                            <span class="navbar-text fa fa-sign-out text-danger"></span>
+                        </a>
+                    </li>
+                    <li style="flex: 100"></li>
+                    <li id="copyright" class="text-right"><p class="navbar-text">
                         {{ $ctrl.version }}
                         &copy; <a href="http://www.monomelodies.nl/" target="_blank" class="navbar-link">MonoMelodies</a>
                         <span class="hidden-xs">{{ $ctrl.copyright.join(', ') }}</span> &bull;
                         <a href ng-click="$ctrl.license()">MIT</a>
                     </p></li>
-                    <li id="menu-logout" ng-if="$ctrl.authenticated" class="nav-item">
-                        <a title="{{'Logout' | translate}}" ng-click="$ctrl.revoke()" href class="nav-link">
-                            <span class="glyphicon glyphicon-log-out text-danger"></span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
