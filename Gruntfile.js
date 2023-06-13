@@ -1,4 +1,6 @@
 
+const sass = require('node-sass');
+
 module.exports = function (grunt) {
 
     var pkg = grunt.file.readJSON('package.json');
@@ -32,7 +34,7 @@ module.exports = function (grunt) {
         monad: {
             options: {
                 style: 'compressed',
-                compass: true,
+                implementation: sass,
                 sourcemap: 'none'
             },
             files: {'tmp/monad-navigation.css': 'src/style.scss'}

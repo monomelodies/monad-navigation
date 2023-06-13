@@ -2,9 +2,10 @@
 "use strict";
 
 import Service from './Service';
+import Footer from './Footer';
 import '../lib/template';
 
-export default angular.module('monad.navigation', ['monad.cms', 'monad.navigation.templates'])
+export default angular.module('monad.navigation', ['monad.cms', 'monad.navigation.templates', 'monad.navigation.footer'])
     .service('monadNavigation', Service)
     .component('monadNavigation', {
         templateUrl: 'Monad/Navigation/template.html',

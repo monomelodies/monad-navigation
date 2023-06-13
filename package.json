@@ -1,6 +1,6 @@
 {
   "name": "monad-navigation",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "Navigation component for Monad CMS",
   "main": "lib/index.js",
   "files": [
@@ -11,15 +11,20 @@
     "test": "tests"
   },
   "dependencies": {
-    "angular": "^1.7.2",
-    "babel-polyfill": "^6.26.0"
+    "angular": "^1.7.8",
+    "font-awesome": "^4.7.0",
+    "node-sass": "^9.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-transform-async-to-generator": "^7.22.5",
+    "@babel/plugin-transform-runtime": "^7.22.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/runtime": "^7.22.5",
+    "@lodder/grunt-postcss": "^3.1.1",
     "angular-mocks": "~1.8.3",
-    "babel-cli": "^6.26.0",
-    "babel-core": "~6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-runtime": "~6.26.0",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
     "cssnano": "^6.0.1",
@@ -30,7 +35,6 @@
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-postcss": "^0.9.0",
     "grunt-sass": "^3.1.0",
     "grunt-shell": "^4.0.0",
     "jasmine-core": "~5.0.1",
@@ -41,13 +45,14 @@
     "karma-ng-html2js-preprocessor": "~1.0.0",
     "karma-phantomjs-launcher": "~1.0.4",
     "phantomjs-prebuilt": "^2.1.16",
+    "postcss": "^8.4.24",
     "postcss-preset-env": "^8.4.2",
-    "precss": "^3.1.2",
+    "precss": "^4.0.0",
     "watchify": "^4.0.0"
   },
   "scripts": {
     "test": "karma start",
-    "build": "babel src --out-dir lib"
+    "build": "node_modules/.bin/babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
