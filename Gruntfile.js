@@ -41,20 +41,22 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('@lodder/grunt-postcss');
     grunt.config('postcss', {
-        monad: {
-            options: {
-                processors: [
-                    require('autoprefixer')(),
-                    require('postcss-preset-env')(),
-                    require('precss')(),
-                    require('cssnano')()
-                ]
+        options: {
+            map: {
+                inline: false,
+                annotation: 'dist/maps/'
             },
-            files: {
-                'dist/monad-navigation.css': 'tmp/monad-navigation.css'
-            }
+            processors: [
+                require('autoprefixer')(),
+                require('postcss-preset-env')(),
+                require('precss')(),
+                require('cssnano')()
+            ]
+        },
+        dist: {
+            src: 'dist/monad-navigation.css'
         }
     });
 
@@ -89,7 +91,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-shell');
     grunt.config('shell', {
-        lib: { command: 'npm run build' },
+        lib: { command: 'node_modules/.bin/babel src --out-dir lib' },
         clean: { command: 'rm -rf dist/* && rm -rf lib/*' }
     });
 
